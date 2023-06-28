@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+<form>
+<p style="text-align:center">На складе</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
+	<thead>
+		<tr>
+			<th scope="col">№ п\п</th>
+			<th scope="col">Название</th>
+			<th scope="col">Серийный номер</th>
+			<th scope="col">Инвентарный номер</th>
+			<th scope="col">Состояние</th>
+			<th scope="col">Примечание</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--<tr>
+			<td>
+				<p th:utext="${id}"></p>
+				</td>
+			<td><p th:utext="${name}"></p></td>
+			<td><p th:utext="${ser}"></p></td>
+			<td><p th:utext="${inv}"></p></td>
+			<td></td>
+			<td></td>
+		</tr>-->
+	<tbody>
+	<tr th:each="item : ${item}">
+		<td></td>
+		<td th:text="${item.name}"></td>
+		<td th:text="${item.ser_numb}"></td>
+		<td th:text="${item.inv_numb}"></td>
+		<td></td>
+		<td></td>
+	</tr>
+	</tbody>
+
+</table>
+
+<p style="text-align:center">&nbsp;</p>
+
+<p style="text-align:center">В офисе</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
+	<thead>
+		<tr>
+			<th scope="col">№ п\п</th>
+			<th scope="col">Название</th>
+			<th scope="col">Серийный номер</th>
+			<th scope="col">Инвентарный номер</th>
+			<th scope="col">Дата выдачи</th>
+			<th scope="col">Состояние</th>
+			<th scope="col">Примечание</th>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</thead>
+</table>
+
+<p style="text-align:center"><input name="delivery_office" type="button" value="Выдать" />&nbsp; <input name="Take_office" type="button" value="Вернуть" /></p>
+
+<p style="text-align:center">На руках</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:1115px">
+	<thead>
+		<tr>
+			<th scope="col">№ п\п</th>
+			<th scope="col">Название</th>
+			<th scope="col">Серийный номер</th>
+			<th scope="col">Инвентарный номер</th>
+			<th scope="col">Дата выдачи</th>
+			<th scope="col">Предпологаемая дата возврата</th>
+			<th scope="col">Состояние</th>
+			<th scope="col">Примечание</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p style="text-align:center"><input name="delivery_worker" type="button" value="Выдать" />&nbsp; <input name="Take_worker" type="button" value="Вернуть" /></p>
+</form>
+
+<p>&nbsp;</p>
+</body>
+</html>
