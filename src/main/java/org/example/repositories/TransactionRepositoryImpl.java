@@ -2,10 +2,11 @@ package org.example.repositories;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class TransactionRepositoryImpl implements TransactionRepository{
     private static final String SQL_GET_BY_ID=
             "select id, from_take, to_delivery, date_delivery, note from transaction where id = :id";
@@ -40,9 +41,9 @@ public class TransactionRepositoryImpl implements TransactionRepository{
     public void save(Transaction transaction){
         var params =new MapSqlParameterSource();
         params.addValue("id",transaction.id());
-        params.addValue("take",transaction.take());
-        params.addValue("delivery",transaction.delivery());
-        params.addValue("date",transaction.date());
+        params.addValue("take",transaction.from_take());
+        params.addValue("delivery",transaction.to_delivery());
+        params.addValue("date",transaction.date_delivery());
         params.addValue("note",transaction.note());
         jdbcTemplate.update(
                 SQL_SAVE,

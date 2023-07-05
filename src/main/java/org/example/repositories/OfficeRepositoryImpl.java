@@ -2,17 +2,18 @@ package org.example.repositories;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class OfficeRepositoryImpl implements OfficeRepository{
     private static final String SQL_GET_BY_ID=
             "select id, Date_delivery, Action, note from office where id = :id";
     private static final String SQL_Find_All=
             "select * from office";
     private static final String SQL_SAVE=
-            "INSERT INTO office (`id`, `Date_delivery', 'Action', 'note') VALUES (:id, :name, :ser, :inv);";
+            "INSERT INTO office (`id`, `Date_delivery', 'Action', 'note') VALUES (:id, :Date_delivery, :Action, :note);";
     private static final String SQL_DELETE=
             "delete from office where id= :id";
     private final OfficeMapper officeMapper;
@@ -40,8 +41,8 @@ public class OfficeRepositoryImpl implements OfficeRepository{
     public void save(Office office){
         var params =new MapSqlParameterSource();
         params.addValue("id",office.id());
-        params.addValue("Date_delivery",office.delivery());
-        params.addValue("Action",office.action());
+        params.addValue("Date_delivery",office.Date_delivery());
+        params.addValue("Action",office.Action());
         params.addValue("note",office.note());
         jdbcTemplate.update(
                 SQL_SAVE,

@@ -1,5 +1,6 @@
 package org.example.services;
 import org.example.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +10,15 @@ import java.util.Optional;
 @Primary
 @Service
 public class itemServiceImpl implements itemService {
+    @Autowired
     private final itemRepository ItemRepository;
+    @Autowired
     private final OfficeRepository officeRepository;
+    @Autowired
     private final OutsideRepository outsideRepository;
+    @Autowired
     private final StoreRepository storeRepository;
+    @Autowired
     private final TransactionRepository transactionRepository;
 
     public itemServiceImpl(itemRepository ItemRepository, OfficeRepository officeRepository,

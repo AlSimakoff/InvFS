@@ -2,10 +2,11 @@ package org.example.repositories;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class OutsideRepositoryImpl implements OutsideRepository{
     private static final String SQL_GET_BY_ID=
             "select id, Date_delivery, Date_take, Action, note from outside where id = :id";
@@ -40,9 +41,9 @@ public class OutsideRepositoryImpl implements OutsideRepository{
     public void save(Outside outside){
         var params =new MapSqlParameterSource();
         params.addValue("id",outside.id());
-        params.addValue("Date_delivery",outside.delivery());
-        params.addValue("take",outside.take());
-        params.addValue("Action",outside.action());
+        params.addValue("Date_delivery",outside.Date_delivery());
+        params.addValue("take",outside.Date_take());
+        params.addValue("Action",outside.Action());
         params.addValue("note",outside.note());
         jdbcTemplate.update(
                 SQL_SAVE,

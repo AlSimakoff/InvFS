@@ -2,8 +2,8 @@ package org.example.repositories;
 
 public record Office(
         int id,
-        String delivery,
-        String action,
+        String Date_delivery,
+        String Action,
         String note
 ) {
 }

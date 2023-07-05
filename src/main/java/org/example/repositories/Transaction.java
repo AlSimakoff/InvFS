@@ -4,9 +4,9 @@ import java.util.Date;
 
 public record Transaction(
         int id,
-        String take,
-        String delivery,
-        Date date,
+        String from_take,
+        String to_delivery,
+        Date date_delivery,
         String note
 ) {
 }

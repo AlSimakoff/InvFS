@@ -12,8 +12,8 @@ public class OfficeMapper implements RowMapper<Office> {
     public Office mapRow(ResultSet rs, int rowNum) throws SQLException{
     return new Office(
             rs.getInt("id"),
-            rs.getString("delivery"),
-            rs.getString("action"),
+            rs.getString("Date_delivery"),
+            rs.getString("Action"),
             rs.getString("note")
     );
     }

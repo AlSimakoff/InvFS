@@ -12,9 +12,9 @@ public class OutsideMapper implements RowMapper<Outside> {
     public Outside mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Outside(
                 rs.getInt("id"),
-                rs.getString("delivery"),
-                rs.getString("take"),
-                rs.getString("action"),
+                rs.getString("Date_delivery"),
+                rs.getString("Date_take"),
+                rs.getString("Action"),
                 rs.getString("note")
         );
     }

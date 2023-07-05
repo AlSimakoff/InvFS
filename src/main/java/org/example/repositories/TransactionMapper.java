@@ -12,9 +12,9 @@ public class TransactionMapper implements RowMapper<Transaction> {
     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Transaction(
                 rs.getInt("id"),
-                rs.getString("take"),
-                rs.getString("delivery"),
-                rs.getDate("date"),
+                rs.getString("from_take"),
+                rs.getString("to_delivery"),
+                rs.getDate("date_delivery"),
                 rs.getString("note")
         );
     }
