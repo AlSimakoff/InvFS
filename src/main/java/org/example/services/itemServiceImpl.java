@@ -1,4 +1,5 @@
 package org.example.services;
+import jakarta.persistence.EntityNotFoundException;
 import org.example.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -53,12 +54,24 @@ public class itemServiceImpl implements itemService {
     ;
 
 
-    public Optional<Office> getOffice(int invId)
+    public Optional<Office> getOffice(Integer invId)
     {
         return officeRepository.getById(invId);
     }
+
+    public OfficeFull getOfficeFull(Integer invId){
+        item itm=ItemRepository.getitemById(invId).orElse(new item(0,"","",""));
+        Office ofic=officeRepository.getById(invId).orElse(new Office(0,"","",""));
+        OfficeFull oficFll= new OfficeFull(itm.id(),itm.name(),itm.ser_numb(),itm.inv_numb(), ofic.Date_delivery(),ofic.Action(),ofic.note());
+        return oficFll;
+    }
     public List<Office> getAllOffice() {
         return officeRepository.findAll();
+    }
+
+    public List<Office> getAllOfficeFull() {
+        List<Office> ofic=officeRepository.findAll();
+        for()
     }
     public void saveOffice(Office Office){
         officeRepository.save(Office);

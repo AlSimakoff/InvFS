@@ -60,13 +60,13 @@
 	</thead>
 	<tbody>
 	<tr th:each="office : ${office}">
-		<td></td>
+		<td th:text="${office.id}"></td>
+		<td th:text="${office.name}"></td>
+		<td th:text="${office.ser}"></td>
+		<td th:text="${office.inv}"></td>
+		<td th:text="${office.Date}"></td>
 		<td th:text="${office.Action}"></td>
-		<td th:text="${office.Date_delivery}"></td>
 		<td th:text="${office.note}"></td>
-		<td></td>
-		<td></td>
-		<td></td>
 	</tr>
 	</tbody>
 </table>
