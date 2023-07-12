@@ -11,7 +11,7 @@ public class OutsideMapper implements RowMapper<Outside> {
     @Override
     public Outside mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Outside(
-                rs.getInt("id"),
+                rs.getInt("id_item"),
                 rs.getString("Date_delivery"),
                 rs.getString("Date_take"),
                 rs.getString("Action"),

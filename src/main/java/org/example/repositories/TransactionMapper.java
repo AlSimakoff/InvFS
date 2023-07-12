@@ -11,7 +11,7 @@ public class TransactionMapper implements RowMapper<Transaction> {
     @Override
     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Transaction(
-                rs.getInt("id"),
+                rs.getInt("id_item"),
                 rs.getString("from_take"),
                 rs.getString("to_delivery"),
                 rs.getDate("date_delivery"),

@@ -4,6 +4,8 @@ import org.example.repositories.Outside;
 import org.example.repositories.Store;
 import org.example.repositories.item;
 import org.example.services.OfficeFull;
+import org.example.services.OutsideFull;
+import org.example.services.StoreFull;
 import org.example.services.itemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +22,9 @@ public class TextController {
     public String showItems(Model model) {
         List<item> Item = ItemService.getAllItems();
         /*List<Office> office = ItemService.getAllOffice();*/
-        OfficeFull office=ItemService.getOfficeFull(1);
-        List<Store> store = ItemService.getAllStore();
-        List<Outside> outside = ItemService.getAllOutside();
+        List<OfficeFull> office=ItemService.getAllOfficeFull();
+        List<StoreFull> store = ItemService.getAllStoreFull();
+        List<OutsideFull> outside = ItemService.getAllOutsideFull();
         model.addAttribute("item", Item);
         model.addAttribute("office", office);
         model.addAttribute("store", store);

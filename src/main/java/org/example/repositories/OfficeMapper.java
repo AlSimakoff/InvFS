@@ -11,7 +11,7 @@ public class OfficeMapper implements RowMapper<Office> {
     @Override
     public Office mapRow(ResultSet rs, int rowNum) throws SQLException{
     return new Office(
-            rs.getInt("id"),
+            rs.getInt("id_item"),
             rs.getString("Date_delivery"),
             rs.getString("Action"),
             rs.getString("note")

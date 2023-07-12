@@ -11,7 +11,7 @@ public class StoreMapper implements RowMapper<Store> {
     @Override
     public Store mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Store(
-                rs.getInt("id"),
+                rs.getInt("id_item"),
                 rs.getString("Action"),
                 rs.getString("note")
 

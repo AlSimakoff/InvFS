@@ -30,13 +30,13 @@
 			<td></td>
 		</tr>-->
 	<tbody>
-	<tr th:each="item : ${item}">
-		<td></td>
-		<td th:text="${item.name}"></td>
-		<td th:text="${item.ser_numb}"></td>
-		<td th:text="${item.inv_numb}"></td>
-		<td></td>
-		<td></td>
+	<tr th:each="store : ${store}">
+		<td th:text="${store.id}"></td>
+		<td th:text="${store.name}"></td>
+		<td th:text="${store.ser}"></td>
+		<td th:text="${store.inv}"></td>
+		<td th:text="${store.Action}"></td>
+		<td th:text="${store.note}"></td>
 	</tr>
 	</tbody>
 
@@ -89,46 +89,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
+	<tr th:each="outside : ${outside}">
+		<td th:text="${outside.id}"></td>
+		<td th:text="${outside.name}"></td>
+		<td th:text="${outside.ser}"></td>
+		<td th:text="${outside.inv}"></td>
+		<td th:text="${outside.delv}"></td>
+		<td th:text="${outside.take}"></td>
+		<td th:text="${outside.Action}"></td>
+		<td th:text="${outside.note}"></td>
+	</tr>
 	</tbody>
 </table>
 

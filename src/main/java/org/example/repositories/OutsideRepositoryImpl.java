@@ -9,13 +9,13 @@ import java.util.Optional;
 @Repository
 public class OutsideRepositoryImpl implements OutsideRepository{
     private static final String SQL_GET_BY_ID=
-            "select id, Date_delivery, Date_take, Action, note from outside where id = :id";
+            "select id_item, Date_delivery, Date_take, Action, note from outside where id = :id";
     private static final String SQL_Find_All=
             "select * from outside";
     private static final String SQL_SAVE=
-            "INSERT INTO outside (`id`, 'Date_delivery', 'Date_take', 'Action', 'note') VALUES (:id, :date, :take, :Action, :note);";
+            "INSERT INTO outside (`id_item`, 'Date_delivery', 'Date_take', 'Action', 'note') VALUES (:id, :date, :take, :Action, :note);";
     private static final String SQL_DELETE=
-            "delete from outside where id= :id";
+            "delete from outside where id_item= :id";
     private final OutsideMapper outsideMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
     public OutsideRepositoryImpl(

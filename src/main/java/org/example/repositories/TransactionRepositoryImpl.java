@@ -9,13 +9,13 @@ import java.util.Optional;
 @Repository
 public class TransactionRepositoryImpl implements TransactionRepository{
     private static final String SQL_GET_BY_ID=
-            "select id, from_take, to_delivery, date_delivery, note from transaction where id = :id";
+            "select id_item, from_take, to_delivery, date_delivery, note from transaction where id = :id";
     private static final String SQL_Find_All=
             "select * from transaction";
     private static final String SQL_SAVE=
-            "INSERT INTO transaction (`id`, 'from_take', 'to_delivery', 'date_delivery', 'note') VALUES (:id, :take, :delivery, :date, :note);";
+            "INSERT INTO transaction (`id_item`, 'from_take', 'to_delivery', 'date_delivery', 'note') VALUES (:id, :take, :delivery, :date, :note);";
     private static final String SQL_DELETE=
-            "delete from transaction where id= :id";
+            "delete from transaction where id_item= :id";
     private final TransactionMapper transactionMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
     public TransactionRepositoryImpl(

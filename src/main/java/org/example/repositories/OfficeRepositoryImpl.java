@@ -9,13 +9,13 @@ import java.util.Optional;
 @Repository
 public class OfficeRepositoryImpl implements OfficeRepository{
     private static final String SQL_GET_BY_ID=
-            "select id, Date_delivery, Action, note from office where id = :id";
+            "select id_item, Date_delivery, Action, note from office where id = :id";
     private static final String SQL_Find_All=
             "select * from office";
     private static final String SQL_SAVE=
-            "INSERT INTO office (`id`, `Date_delivery', 'Action', 'note') VALUES (:id, :Date_delivery, :Action, :note);";
+            "INSERT INTO office (`id_item`, `Date_delivery', 'Action', 'note') VALUES (:id, :Date_delivery, :Action, :note);";
     private static final String SQL_DELETE=
-            "delete from office where id= :id";
+            "delete from office where id_item= :id";
     private final OfficeMapper officeMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
     public OfficeRepositoryImpl(

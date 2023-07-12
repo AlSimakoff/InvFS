@@ -9,13 +9,13 @@ import java.util.Optional;
 @Repository
 public class StoreRepositoryImpl implements StoreRepository{
     private static final String SQL_GET_BY_ID=
-            "select id, Action, note from store where id = :id";
+            "select id_item, Action, note from store where id = :id";
     private static final String SQL_Find_All=
             "select * from store";
     private static final String SQL_SAVE=
-            "INSERT INTO store (`id`, 'Action', 'note') VALUES (:id, :Action, :note);";
+            "INSERT INTO store (`id_item`, 'Action', 'note') VALUES (:id, :Action, :note);";
     private static final String SQL_DELETE=
-            "delete from store where id= :id";
+            "delete from store where id_item= :id";
     private final StoreMapper storeMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
     public StoreRepositoryImpl(
