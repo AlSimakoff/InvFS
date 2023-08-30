@@ -10,7 +10,8 @@ import org.example.services.itemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -31,6 +32,11 @@ public class TextController {
         model.addAttribute("outside", outside);
 
         return "index";
+    }
+    @PostMapping(value = "/save_vidout")
+    public void  saveVidout(@RequestBody Outside outside){
+        List<StoreFull> store = ItemService.getAllStoreFull();
+
     }
 }
 

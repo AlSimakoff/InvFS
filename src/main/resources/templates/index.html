@@ -1,9 +1,13 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>index</title>
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="/static/inv.css" th:href="@{/inv.css}" />
 </head>
+
 <body>
+
 <form>
 <p style="text-align:center">На складе</p>
 
@@ -19,16 +23,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<!--<tr>
-			<td>
-				<p th:utext="${id}"></p>
-				</td>
-			<td><p th:utext="${name}"></p></td>
-			<td><p th:utext="${ser}"></p></td>
-			<td><p th:utext="${inv}"></p></td>
-			<td></td>
-			<td></td>
-		</tr>-->
 	<tbody>
 	<tr th:each="store : ${store}">
 		<td th:text="${store.id}"></td>
@@ -70,10 +64,53 @@
 	</tr>
 	</tbody>
 </table>
-
-<p style="text-align:center"><input name="delivery_office" type="button" value="Выдать" />&nbsp; <input name="Take_office" type="button" value="Вернуть" /></p>
-
-<p style="text-align:center">На руках</p>
+	<div>
+	<p style="text-align:center"><a href="#vidof"><input name="delivery_office" type="button" value="Выдать" /></a>
+	<a href="#verof"><input name="Take_office" type="button" value="Вернуть" /></a></p>
+	</div>
+	<div id="vidof" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Выдать в офис</h3>
+					<a href="#close" title="Close" class="close">×</a>
+				</div>
+				<div class="modal-body">
+					<form >
+						<ul  style=" list-style-type: none; ">
+							<li>Инвентарный номер</li>
+							<li><input type="text" id="inv_vidof" name="inv" required minlength="4" maxlength="8" size="10" /></li>
+							<li>Примечание</li>
+							<li><textarea id="note_vidof" name="note"></textarea></li>
+							<li><input type="submit"></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="verof" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Вернуть из офиса</h3>
+					<a href="#close" title="Close" class="close">×</a>
+				</div>
+				<div class="modal-body">
+					<form >
+						<ul  style=" list-style-type: none; ">
+							<li>Инвентарный номер</li>
+							<li><input type="text" id="inv_verof" name="inv" required minlength="4" maxlength="8" size="10" /></li>
+							<li>Примечание</li>
+							<li><textarea id="note_verof" name="note"></textarea></li>
+							<li><input type="submit"></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p style="text-align:center">На руках</p>
 
 <table border="1" cellpadding="1" cellspacing="1" style="width:1115px">
 	<thead>
@@ -102,9 +139,66 @@
 	</tbody>
 </table>
 
-<p style="text-align:center"><input name="delivery_worker" type="button" value="Выдать" />&nbsp; <input name="Take_worker" type="button" value="Вернуть" /></p>
+	<div>
+		<p style="text-align:center"><a href="#vidout"><input name="delivery_worker" type="button" value="Выдать" /></a>
+	<a href="#vernut"><input name="delivery_worker" type="button" value="Вернуть" /></a></p>
+	</div>
 </form>
+<div id="vidout" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Выдать на руки</h3>
+				<a href="#close" title="Close" class="close">×</a>
+			</div>
+			<div class="modal-body" >
+				<!-- Write your comments here
 
-<p>&nbsp;</p>
+
+				НАДО ПРОЧИТАТЬ КАК ДЕЛАТЬ ФОРМЫ СО СПРИНГОМ
+
+
+
+
+				<form action="#" th:action="@{/save_vidout}" th:object="${OutsideFull}" method="post">
+					<ul  style=" list-style-type: none; ">
+						<li>Инвентарный номер</li>
+						<li><input type="text" id="inv_vidout" name="inv" th:field="*{inv}" required minlength="4" maxlength="8" size="10" /></li>
+						<li>Предполагаемая дата возврата</li>
+						<li><input type="date" id="date" name="date" th:field="*{take}" required minlength="4" maxlength="8" size="10" /></li>
+						<li>Примечание</li>
+						<li><textarea id="note_vidout" name="note" th:field="*{note}"></textarea></li>
+						<li><input type="submit"></li>
+					</ul>
+				</form>-->
+
+			</div>
+		</div>
+	</div>
+</div>
+<div id="vernut" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Вернуть с рук</h3>
+				<a href="#close" title="Close" class="close">×</a>
+			</div>
+			<div class="modal-body">
+				<form >
+					<ul  style=" list-style-type: none; ">
+						<li>Инвентарный номер</li>
+						<li><input type="text" id="inv_vernut" name="inv" required minlength="4" maxlength="8" size="10" /></li>
+						<li>Примечание</li>
+						<li><textarea id="note_vernut" name="note"></textarea></li>
+						<li><input type="submit"></li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 </body>
 </html>
