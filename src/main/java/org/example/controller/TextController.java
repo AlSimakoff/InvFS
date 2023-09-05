@@ -10,9 +10,13 @@ import org.example.services.itemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class TextController {
@@ -30,13 +34,43 @@ public class TextController {
         model.addAttribute("office", office);
         model.addAttribute("store", store);
         model.addAttribute("outside", outside);
-
+        model.addAttribute("outsideFull", outside.get(1));
+        model.addAttribute("officeForm", office.get(1));
+        model.addAttribute("ItemForm", Item.get(1));
         return "index";
     }
-    @PostMapping(value = "/save_vidout")
-    public void  saveVidout(@RequestBody Outside outside){
-        List<StoreFull> store = ItemService.getAllStoreFull();
+    @PostMapping(value = "/AddItem")
+    public String addItem(@RequestParam Map<String, String> Map, Model model) {
+        model.addAttribute("111", Map);
+        /*ItemService.saveitem(Item);*/
 
+        return "redirect:/index";
     }
+    @PostMapping(value = "/VidOut")
+    public String  saveOut( OutsideFull outsideFull, Model model){
+        model.addAttribute("outside", outsideFull);
+
+        return "redirect:/index";
+    }
+    @PostMapping(value = "/VerOut")
+    public String  verOut( OutsideFull outsideFull, Model model){
+        model.addAttribute("outside", outsideFull);
+
+        return "redirect:/index";
+    }
+    @PostMapping(value = "/VerOfc")
+    public String  verOfc( Office office, Model model){
+
+        return "redirect:/index";
+    }
+
+    @PostMapping(value = "/VidOfc")
+    public String  vidOfc( Office office, Model model){
+        model.addAttribute("outside", office);
+
+        return "redirect:/index";
+    }
+
+
 }
 
