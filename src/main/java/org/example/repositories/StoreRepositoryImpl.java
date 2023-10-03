@@ -13,7 +13,7 @@ public class StoreRepositoryImpl implements StoreRepository{
     private static final String SQL_Find_All=
             "select * from store";
     private static final String SQL_SAVE=
-            "INSERT INTO store (`id_item`, 'Action', 'note') VALUES (:id, :Action, :note);";
+            "INSERT INTO `inventory`.`store` (`id_item`, `Action`, `note`) VALUES (:id, :Action, :note)";
     private static final String SQL_DELETE=
             "delete from store where id_item= :id";
     private final StoreMapper storeMapper;

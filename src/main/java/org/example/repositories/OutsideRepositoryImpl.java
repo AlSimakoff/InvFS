@@ -4,8 +4,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.text.ParseException;
+import java.text.DateFormat;
 @Repository
 public class OutsideRepositoryImpl implements OutsideRepository{
     private static final String SQL_GET_BY_ID=
@@ -13,7 +18,7 @@ public class OutsideRepositoryImpl implements OutsideRepository{
     private static final String SQL_Find_All=
             "select * from outside";
     private static final String SQL_SAVE=
-            "INSERT INTO outside (`id_item`, 'Date_delivery', 'Date_take', 'Action', 'note') VALUES (:id, :date, :take, :Action, :note);";
+            "INSERT INTO `inventory`.`outside` (`id_item`, `Date_delivery`, `Date_take`, `Action`, `note`) VALUES (:id, :Date_delivery, :take, :Action, :note)";
     private static final String SQL_DELETE=
             "delete from outside where id_item= :id";
     private final OutsideMapper outsideMapper;
@@ -24,6 +29,17 @@ public class OutsideRepositoryImpl implements OutsideRepository{
     ){
         this.outsideMapper = outsideMapper;
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public static Date date_save(String stringDate) {
+        try{
+            Date date=new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);
+            return date;
+        }catch(Exception e){
+            System.out.println(e);
+            Date date=new Date();
+            return date;
+        }
     }
 
     @Override
@@ -39,6 +55,7 @@ public class OutsideRepositoryImpl implements OutsideRepository{
     }
     @Override
     public void save(Outside outside){
+
         var params =new MapSqlParameterSource();
         params.addValue("id",outside.id());
         params.addValue("Date_delivery",outside.Date_delivery());
@@ -49,6 +66,7 @@ public class OutsideRepositoryImpl implements OutsideRepository{
                 SQL_SAVE,
                 params
         );
+
 
     }
     @Override

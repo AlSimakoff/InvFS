@@ -13,7 +13,7 @@ public class itemRepositoryImpl implements itemRepository{
     private static final String SQL_Find_All=
             "select * from items";
     private static final String SQL_SAVE_ITEM=
-            "INSERT INTO `inventory`.`items` (`id`, `name`, `ser_numb`, `inv_numb`) VALUES (:id, :name, :ser, :inv);";
+            "INSERT INTO `inventory`.`items` ( `name`, `ser_numb`, `inv_numb`) VALUES ( :name, :ser, :inv);";
     private static final String SQL_DELETE=
             "delete from items where id= :id";
     private final ItemMapper itemMapper;
@@ -40,7 +40,7 @@ public class itemRepositoryImpl implements itemRepository{
     @Override
     public void save(item Item){
         var params =new MapSqlParameterSource();
-        params.addValue("id",Item.id());
+
         params.addValue("name",Item.name());
         params.addValue("ser",Item.ser_numb());
         params.addValue("inv",Item.inv_numb());

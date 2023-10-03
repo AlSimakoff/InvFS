@@ -13,7 +13,7 @@ public class TransactionRepositoryImpl implements TransactionRepository{
     private static final String SQL_Find_All=
             "select * from transaction";
     private static final String SQL_SAVE=
-            "INSERT INTO transaction (`id_item`, 'from_take', 'to_delivery', 'date_delivery', 'note') VALUES (:id, :take, :delivery, :date, :note);";
+            "INSERT INTO `inventory`.`transaction` (`id_item`, `from_take`, `to_delivery`, `date_delivery`, `note`) VALUES (:id, :take, :delivery, :date, :note)";
     private static final String SQL_DELETE=
             "delete from transaction where id_item= :id";
     private final TransactionMapper transactionMapper;

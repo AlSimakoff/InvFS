@@ -13,7 +13,7 @@ public class OfficeRepositoryImpl implements OfficeRepository{
     private static final String SQL_Find_All=
             "select * from office";
     private static final String SQL_SAVE=
-            "INSERT INTO office (`id_item`, `Date_delivery', 'Action', 'note') VALUES (:id, :Date_delivery, :Action, :note);";
+            "INSERT INTO `inventory`.`office` (`id_item`, `Date_delivery`, `Action`, `note`) VALUES (:id, :Date_delivery, :Action, :note);";
     private static final String SQL_DELETE=
             "delete from office where id_item= :id";
     private final OfficeMapper officeMapper;

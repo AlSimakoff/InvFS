@@ -14,7 +14,7 @@
 <table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
 	<thead>
 		<tr>
-			<th scope="col">№ п\п</th>
+			<th scope="col">Код объекта</th>
 			<th scope="col">Название</th>
 			<th scope="col">Серийный номер</th>
 			<th scope="col">Инвентарный номер</th>
@@ -71,7 +71,7 @@
 <table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
 	<thead>
 		<tr>
-			<th scope="col">№ п\п</th>
+			<th scope="col">Код объекта</th>
 			<th scope="col">Название</th>
 			<th scope="col">Серийный номер</th>
 			<th scope="col">Инвентарный номер</th>
@@ -107,7 +107,7 @@
 					<form th:action="@{/VidOfc}" th:object="${officeForm}" method="post">
 						<ul  style=" list-style-type: none; ">
 							<li>Код объекта</li>
-							<li><input type="text" id="inv_vidof" name="inv"  th:field="*{id}" required minlength="4" maxlength="8" size="10" /></li>
+							<li><input type="text" id="inv_vidof" name="inv"  th:field="*{id}" required minlength="1" maxlength="8" size="10" /></li>
 							<li>Примечание</li>
 							<li><textarea id="note_vidof" name="note"  th:field="*{note}"></textarea></li>
 							<li><input type="submit"></li>
@@ -128,7 +128,9 @@
 					<form  th:action="@{/VerOfc}" th:object="${officeForm}" method="post">
 						<ul  style=" list-style-type: none; ">
 							<li>Код объекта</li>
-							<li><input type="text" id="inv_verof" name="inv" th:field="*{id}" required minlength="4" maxlength="8" size="10" /></li>
+							<li><input type="text" id="inv_verof" name="inv" th:field="*{id}" required minlength="1" maxlength="8" size="10" /></li>
+							<li>Состояние</li>
+							<li><textarea id="action_VerOfc" name="action" th:field="*{Action}"></textarea></li>
 							<li>Примечание</li>
 							<li><textarea id="note_verof" name="note" th:field="*{note}"></textarea></li>
 							<li><input type="submit"></li>
@@ -143,7 +145,7 @@
 <table border="1" cellpadding="1" cellspacing="1" style="width:1115px">
 	<thead>
 		<tr>
-			<th scope="col">№ п\п</th>
+			<th scope="col">Код объекта</th>
 			<th scope="col">Название</th>
 			<th scope="col">Серийный номер</th>
 			<th scope="col">Инвентарный номер</th>
@@ -185,9 +187,9 @@
 				<form action="#" th:action="@{/VidOut}" th:object="${outsideFull}" method="post">
 					<ul  style=" list-style-type: none; ">
 						<li>Код объекта</li>
-						<li><input type="text" th:field="*{id}" required minlength="4" maxlength="8" size="10" /></li>
+						<li><input type="text" th:field="*{id}" required minlength="1" maxlength="8" size="10" /></li>
 						<li>Предполагаемая дата возврата</li>
-						<li><input type="date" id="date" name="date" th:field="*{take}" required minlength="4" maxlength="8" size="10" /></li>
+						<li><input type="date" id="date" name="date" th:field="*{take}"  /></li>
 						<li>Примечание</li>
 						<li><textarea id="note_vidout" name="note" th:field="*{note}"></textarea></li>
 						<li><input type="submit"></li>
@@ -209,7 +211,9 @@
 				<form action="#" th:action="@{/VerOut}" th:object="${outsideFull}" method="post">
 					<ul  style=" list-style-type: none; ">
 						<li>Код объекта</li>
-						<li><input type="text" id="inv_vernut" name="inv" th:field="*{id}" required minlength="4" maxlength="8" size="10" /></li>
+						<li><input type="text" id="inv_vernut" name="inv" th:field="*{id}"  size="10" /></li>
+						<li>Состояние</li>
+						<li><textarea id="action_vernut" name="action" th:field="*{Action}"></textarea></li>
 						<li>Примечание</li>
 						<li><textarea id="note_vernut" name="note" th:field="*{note}"></textarea></li>
 						<li><input type="submit"></li>
