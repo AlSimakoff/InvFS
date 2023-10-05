@@ -1,17 +1,18 @@
 ﻿<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>index</title>
+	<title>Инвентаризационная панель</title>
 	<link rel="stylesheet" type="text/css" media="all"
-		  href="/static/inv.css" th:href="@{/inv.css}" />
+		  href="/static/css/inv.css" th:href="@{/css/inv.css}" />
+
 </head>
 
 <body>
 
 
-<p style="text-align:center">На складе</p>
+<p class="p_zag">На складе</p>
 
-<table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
+<table class="table" >
 	<thead>
 		<tr>
 			<th scope="col">Код объекта</th>
@@ -36,7 +37,7 @@
 
 </table>
 	<div>
-		<p style="text-align:center"><a href="#AddItem"><input name="delivery_office" type="button" value="Добавить" /></a>
+		<p style="text-align:center"><a href="#AddItem"><input name="delivery_office" type="button" value="Добавить" class="btn" /></a>
 			</p>
 	</div>
 	<div id="AddItem" class="modal">
@@ -66,9 +67,9 @@
 	</div>
 <p style="text-align:center">&nbsp;</p>
 
-<p style="text-align:center">В офисе</p>
+<p class="p_zag">В офисе</p>
 
-<table border="1" cellpadding="1" cellspacing="1" style=" width:1116px">
+<table class="table">
 	<thead>
 		<tr>
 			<th scope="col">Код объекта</th>
@@ -93,8 +94,8 @@
 	</tbody>
 </table>
 	<div>
-	<p style="text-align:center"><a href="#vidof"><input name="delivery_office" type="button" value="Выдать" /></a>
-	<a href="#verof"><input name="Take_office" type="button" value="Вернуть" /></a></p>
+	<p style="text-align:center"><a href="#vidof"><input name="delivery_office" type="button" value="Выдать" class="btn" /></a>
+	<a href="#verof"><input name="Take_office" type="button" value="Вернуть" class="btn" /></a></p>
 	</div>
 	<div id="vidof" class="modal">
 		<div class="modal-dialog">
@@ -140,9 +141,9 @@
 			</div>
 		</div>
 	</div>
-	<p style="text-align:center">На руках</p>
+	<p class="p_zag">На руках</p>
 
-<table border="1" cellpadding="1" cellspacing="1" style="width:1115px">
+<table class="table">
 	<thead>
 		<tr>
 			<th scope="col">Код объекта</th>
@@ -170,8 +171,8 @@
 </table>
 
 	<div>
-		<p style="text-align:center"><a href="#vidout"><input name="delivery_worker" type="button" value="Выдать" /></a>
-	<a href="#vernut"><input name="delivery_worker" type="button" value="Вернуть" /></a></p>
+		<p style="text-align:center"><a href="#vidout"><input name="delivery_worker" type="button" value="Выдать" class="btn" /></a>
+	<a href="#vernut"><input name="delivery_worker" type="button" value="Вернуть" class="btn" /></a></p>
 	</div>
 
 <div id="vidout" class="modal">

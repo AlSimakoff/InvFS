@@ -14,6 +14,9 @@ public class itemRepositoryImpl implements itemRepository{
             "select * from items";
     private static final String SQL_SAVE_ITEM=
             "INSERT INTO `inventory`.`items` ( `name`, `ser_numb`, `inv_numb`) VALUES ( :name, :ser, :inv);";
+    private static final String SQL_GET_ITEM_BY_SER=
+            "select id, name, ser_numb, inv_numb from items where inv_numb = :inv";
+
     private static final String SQL_DELETE=
             "delete from items where id= :id";
     private final ItemMapper itemMapper;
@@ -49,6 +52,25 @@ public class itemRepositoryImpl implements itemRepository{
                 params
         );
 
+    }
+    @Override
+    public Optional<item> save_and_get(item Item){
+        var params =new MapSqlParameterSource();
+
+        params.addValue("name",Item.name());
+        params.addValue("ser",Item.ser_numb());
+        params.addValue("inv",Item.inv_numb());
+        jdbcTemplate.update(
+                SQL_SAVE_ITEM,
+                params
+        );
+        var inv = new MapSqlParameterSource();
+        inv.addValue("inv", Item.inv_numb());
+        return jdbcTemplate.query(
+                SQL_GET_ITEM_BY_SER,
+                inv,
+                itemMapper
+        ).stream().findFirst();
     }
     @Override
     public void delete(int id){

@@ -1,12 +1,6 @@
 package org.example.controller;
-import org.example.repositories.Office;
-import org.example.repositories.Outside;
-import org.example.repositories.Store;
-import org.example.repositories.item;
-import org.example.services.OfficeFull;
-import org.example.services.OutsideFull;
-import org.example.services.StoreFull;
-import org.example.services.itemServiceImpl;
+import org.example.repositories.*;
+import org.example.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,13 +42,24 @@ public class TextController {
         model.addAttribute("ItemForm", item_for_form);
         return "index";
     }
+
+    @GetMapping("/transaction")
+    public String showTransaction(Model model) {
+        List<TransactionFull> transaction=ItemService.getAllTransactionFull();
+
+        //Add data on web-form
+        model.addAttribute("transaction", transaction);
+
+        return "transaction";
+    }
     @PostMapping(value = "/AddItem")
     public String addItem(@RequestParam Map<String, String> Map, Model model) {
         item Item=new item(1,Map.get("name"),Map.get("ser"), Map.get("inv"));
-        ItemService.saveitem(Item);
-        Store store=new Store(Item.id(),"Новое","");
+        int ItemId=ItemService.saveitem_getid(Item);
+        Store store=new Store(ItemId,"Новое","");
         ItemService.saveStore(store);
-
+        Transaction trs=new Transaction(ItemId,"","Склад", date_now(),"" );
+        ItemService.saveTransaction(trs);
         return "redirect:/index";
     }
     @PostMapping(value = "/VidOut")
@@ -67,6 +72,8 @@ public class TextController {
                 outsideFull.getNote());
         ItemService.saveOutside(outside);
         ItemService.deleteStore(outside.id());
+        Transaction trs=new Transaction(outside.id(),"Склад","Лично", date_now(),outside.note() );
+        ItemService.saveTransaction(trs);
         return "redirect:/index";
     }
     @PostMapping(value = "/VerOut")
@@ -74,6 +81,8 @@ public class TextController {
         Store store=new Store(outsideFull.getId(),outsideFull.getAction(),outsideFull.getNote());
         ItemService.saveStore(store);
         ItemService.deleteOutside(outsideFull.getId());
+        Transaction trs=new Transaction(outsideFull.getId(),"Лично","Склад", date_now(),outsideFull.getNote());
+        ItemService.saveTransaction(trs);
         return "redirect:/index";
     }
     @PostMapping(value = "/VerOfc")
@@ -81,6 +90,8 @@ public class TextController {
         Store store=new Store(office.id(),office.Action(),office.note());
         ItemService.saveStore(store);
         ItemService.deleteOffice(office.id());
+        Transaction trs=new Transaction(office.id(),"Офис","Склад", date_now(), office.note() );
+        ItemService.saveTransaction(trs);
         return "redirect:/index";
     }
 
@@ -92,7 +103,8 @@ public class TextController {
                 office.note());
         ItemService.saveOffice(officeBd);
         ItemService.deleteStore(office.id());
-
+        Transaction trs=new Transaction(office.id(),"Склад","Офис", date_now(),office.note() );
+        ItemService.saveTransaction(trs);
         return "redirect:/index";
     }
 

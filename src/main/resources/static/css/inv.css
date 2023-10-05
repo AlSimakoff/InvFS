@@ -1,3 +1,4 @@
+
 .modal {
     position: fixed; /* фиксированное положение */
     top: 0;
@@ -144,3 +145,133 @@ input {
   box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
   width: 190px;
 }
+.table {
+
+	width: 100%;
+
+	border: none;
+
+	margin-bottom: 20px;
+
+}
+
+.table thead th {
+
+	font-weight: bold;
+
+	text-align: left;
+
+	border: none;
+
+	padding: 10px 15px;
+
+	background: #d8d8d8;
+
+	font-size: 14px;
+
+}
+
+.table thead tr th:first-child {
+
+
+	border-radius: 8px 0 0 8px;
+
+}
+
+.table thead tr th:last-child {
+
+	border-radius: 0 8px 8px 0;
+
+}
+
+.table tbody td {
+
+    background: #fff;
+
+	text-align: left;
+
+	border: none;
+
+	padding: 10px 15px;
+
+	font-size: 14px;
+
+	vertical-align: top;
+
+}
+
+.table tbody tr:nth-child(even){
+
+	background: #f3f3f3;
+
+}
+
+.table tbody tr td:first-child {
+
+	border-radius: 8px 0 0 8px;
+
+}
+
+.table tbody tr td:last-child {
+
+	border-radius: 0 8px 8px 0;
+
+}
+
+.btn {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 25px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: 1px solid #fff;
+	border-radius: 50px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #444;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;
+	vertical-align: top;
+	transition: box-shadow 0.2s;
+}
+.btn:focus-visible {
+	border: 1px solid #4c51f9;
+	outline: none;
+}
+.btn:hover {
+	transition: all 0.2s;
+	box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+.btn:active {
+	background-color: #808080;
+}
+.btn:disabled {
+	background-color: #eee;
+	border-color: #eee;
+	color: #444;
+	cursor: not-allowed;
+}
+ body {
+    background-image: url("https://img.freepik.com/free-photo/dark-grunge-style-scratched-metal-surface_1048-12951.jpg?w=1060&t=st=1696496233~exp=1696496833~hmac=fb41761677456993b91c0751099b20f742404c468352403a5506bb03631b994a");
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100%; /* Opera 9.6+ */
+        background-size: 100%; /* Современные браузеры */
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+             background-position: center;
+     }
+
+     .p_zag {
+
+     text-align:center;
+     color: white;
+     font-size: x-large;
+     }

@@ -47,7 +47,12 @@ public class itemServiceImpl implements itemService {
     }
 
     ;
+    public int saveitem_getid(item Item) {
+        item newItem=ItemRepository.save_and_get(Item).orElse(new item(0,"","",""));
+                return newItem.id();
+    }
 
+    ;
     public void deleteitem(int ItemId) {
         ItemRepository.delete(ItemId);
     }
@@ -163,6 +168,18 @@ public class itemServiceImpl implements itemService {
     public void deleteTransaction(int invId){
         transactionRepository.delete(invId);
     };
+
+    public List<TransactionFull> getAllTransactionFull() {
+        List<Transaction> trsList = transactionRepository.findAll();
+        List<TransactionFull> trsFllsList = new ArrayList<TransactionFull>();
+        for (Transaction trs : trsList) {
+            item itm = ItemRepository.getitemById(trs.id()).orElse(new item(0, "", "", ""));
+            trsFllsList.add(new TransactionFull(itm.id(), itm.name(),
+                    itm.ser_numb(), itm.inv_numb(), trs.from_take(),
+                    trs.to_delivery(), trs.date_delivery(), trs.note()));
+        }
+        return trsFllsList;
+    }
 }
 
 

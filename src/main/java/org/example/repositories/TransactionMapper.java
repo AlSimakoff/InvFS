@@ -14,7 +14,7 @@ public class TransactionMapper implements RowMapper<Transaction> {
                 rs.getInt("id_item"),
                 rs.getString("from_take"),
                 rs.getString("to_delivery"),
-                rs.getDate("date_delivery"),
+                rs.getString("date_delivery"),
                 rs.getString("note")
         );
     }

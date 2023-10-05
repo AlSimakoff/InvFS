@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/static/css/inv.css" th:href="@{/css/inv.css}" />
+    <meta charset="UTF-8">
+    <title>История действий</title>
+</head>
+<body>
+<table class="table" >
+    <thead>
+    <tr>
+        <th scope="col">Код объекта</th>
+        <th scope="col">Название</th>
+        <th scope="col">Серийный номер</th>
+        <th scope="col">Инвентарный номер</th>
+        <th scope="col">Откуда</th>
+        <th scope="col">Куда</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Примечание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tbody>
+    <tr th:each="i : ${#numbers.sequence(transaction.size() - 1, 0, -1)}">
+        <td th:text="${transaction[i].id}"></td>
+        <td th:text="${transaction[i].name}"></td>
+        <td th:text="${transaction[i].ser}"></td>
+        <td th:text="${transaction[i].inv}"></td>
+        <td th:text="${transaction[i].from_take}"></td>
+        <td th:text="${transaction[i].to_delivery}"></td>
+        <td th:text="${transaction[i].date_delivery}"></td>
+        <td th:text="${transaction[i].note}"></td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
+</html>
