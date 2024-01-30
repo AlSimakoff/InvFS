@@ -4,13 +4,22 @@
 	<title>Инвентаризационная панель</title>
 	<link rel="stylesheet" type="text/css" media="all"
 		  href="/static/css/inv.css" th:href="@{/css/inv.css}" />
+	<style>
+	 body {
+  background-image: url("images/background.jpg");
+}</style>
 
 </head>
 
 <body>
 
-
+<div class="topnav">
+	<a  class="active" href="http://localhost:8080/index">Панель инвентаризации</a>
+	<a  href="http://localhost:8080/transaction">История действий</a>
+</div>
+<br><br>
 <p class="p_zag">На складе</p>
+
 
 <table class="table" >
 	<thead>
@@ -24,18 +33,22 @@
 		</tr>
 	</thead>
 	<tbody>
-	<tbody>
+
 	<tr th:each="store : ${store}">
-		<td th:text="${store.id}"></td>
-		<td th:text="${store.name}"></td>
-		<td th:text="${store.ser}"></td>
-		<td th:text="${store.inv}"></td>
-		<td th:text="${store.Action}"></td>
-		<td th:text="${store.note}"></td>
+
+        <td th:text="${store.id}"><</td>
+		<td th:text="${store.name}"> </td>
+		<td th:text="${store.ser}"> </td>
+		<td th:text="${store.inv}"> </td>
+		<td th:text="${store.Action}"> </td>
+		<td th:text="${store.note}"> </td>
+		<td width="3%"><a th:href="@{/storedelete(Id=${store.id})}">❌</a></td>
+
 	</tr>
 	</tbody>
-
 </table>
+
+
 	<div>
 		<p style="text-align:center"><a href="#AddItem"><input name="delivery_office" type="button" value="Добавить" class="btn" /></a>
 			</p>
@@ -90,6 +103,8 @@
 		<td th:text="${office.Date}"></td>
 		<td th:text="${office.Action}"></td>
 		<td th:text="${office.note}"></td>
+		<td width="3%"><a th:href="@{/officedelete(Id=${office.id})}">❌</a></td>
+
 	</tr>
 	</tbody>
 </table>
@@ -166,6 +181,7 @@
 		<td th:text="${outside.take}"></td>
 		<td th:text="${outside.Action}"></td>
 		<td th:text="${outside.note}"></td>
+		<td width="3%"><a th:href="@{/outsidedelete(Id=${outside.id})}">❌</a></td>
 	</tr>
 	</tbody>
 </table>
@@ -201,6 +217,7 @@
 		</div>
 	</div>
 </div>
+
 <div id="vernut" class="modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -226,6 +243,44 @@
 </div>
 
 
+<div id="error" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Ошибка</h3>
+				<a href="#close" title="Close" class="close">×</a>
+			</div>
+			<div class="modal-body">
 
+					<ul  style=" list-style-type: none; ">
+						<li>Вы ввели неверный код элемента</li>
+						<li><a href="#close"><input type="button" value="ОК" class="btn" /></a></li>
+					</ul>
+
+		</div>
+	</div>
+	</div>
+</div>
+	<div id="delete" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Списание имущества</h3>
+					<a href="#close" title="Close" class="close">×</a>
+				</div>
+				<div class="modal-body">
+					<form action="#" th:action="@{/delete}" th:object="${officeForm}" method="post">
+
+					<ul  style=" list-style-type: none; ">
+						<input type="hidden"  th:field="*{id}" visible="false"  size="10" />
+						<li><input type="text" id="del_note" name="inv" th:field="*{note}"  size="10" /></li>
+						<li><input type="submit"></li>
+					</ul>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

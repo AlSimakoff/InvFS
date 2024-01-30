@@ -4,24 +4,24 @@ import org.example.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 
 @Controller
 public class TextController {
 
     public String date_now(){
-        String datenw=java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-               return datenw;
+               return java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
+    Integer Item_Delete_Id;
+    String Item_Delete_Place;
     @Autowired
     private itemServiceImpl ItemService;
+
+
     @GetMapping("/index")
     public String showItems(Model model) {
         List<item> Item = ItemService.getAllItems();
@@ -40,6 +40,7 @@ public class TextController {
         model.addAttribute("outsideFull", outside_for_form);
         model.addAttribute("officeForm", office_for_form);
         model.addAttribute("ItemForm", item_for_form);
+
         return "index";
     }
 
@@ -64,39 +65,61 @@ public class TextController {
     }
     @PostMapping(value = "/VidOut")
     public String  saveOut( OutsideFull outsideFull, Model model){
-
-        Outside outside=new Outside(outsideFull.getId(),
-                date_now(),
-                outsideFull.getTake(),
-                "Выдача",
-                outsideFull.getNote());
-        ItemService.saveOutside(outside);
-        ItemService.deleteStore(outside.id());
-        Transaction trs=new Transaction(outside.id(),"Склад","Лично", date_now(),outside.note() );
-        ItemService.saveTransaction(trs);
-        return "redirect:/index";
+        Store check=ItemService.getStore(outsideFull.getId()).orElse(new Store(0,"",""));
+        if (check.id()!=0) {
+            Outside outside = new Outside(outsideFull.getId(),
+                    date_now(),
+                    outsideFull.getTake(),
+                    "Выдача",
+                    outsideFull.getNote());
+            ItemService.saveOutside(outside);
+            ItemService.deleteStore(outside.id());
+            Transaction trs = new Transaction(outside.id(), "Склад", "Лично", date_now(),
+                    outside.note());
+            ItemService.saveTransaction(trs);
+            return "redirect:/index";
+        }
+        else {
+            return  "redirect:/index#error";
+        }
     }
     @PostMapping(value = "/VerOut")
     public String  verOut( OutsideFull outsideFull, Model model){
-        Store store=new Store(outsideFull.getId(),outsideFull.getAction(),outsideFull.getNote());
-        ItemService.saveStore(store);
-        ItemService.deleteOutside(outsideFull.getId());
-        Transaction trs=new Transaction(outsideFull.getId(),"Лично","Склад", date_now(),outsideFull.getNote());
-        ItemService.saveTransaction(trs);
-        return "redirect:/index";
+        Outside check=ItemService.getOutside(outsideFull.getId()).orElse(new Outside(0,"","",
+                                                                               "",""));
+        if (check.id()!=0) {
+            Store store = new Store(outsideFull.getId(), outsideFull.getAction(), outsideFull.getNote());
+            ItemService.saveStore(store);
+            ItemService.deleteOutside(outsideFull.getId());
+            Transaction trs = new Transaction(outsideFull.getId(), "Лично", "Склад", date_now(),
+                                              outsideFull.getNote());
+            ItemService.saveTransaction(trs);
+            return "redirect:/index";
+        }
+        else {
+            return "redirect:/index#error";
+        }
     }
     @PostMapping(value = "/VerOfc")
     public String  verOfc( Office office, Model model){
+        Office check=ItemService.getOffice(office.id()).orElse(new Office(0,"","",""));
+        if (check.id()!=0) {
         Store store=new Store(office.id(),office.Action(),office.note());
         ItemService.saveStore(store);
         ItemService.deleteOffice(office.id());
         Transaction trs=new Transaction(office.id(),"Офис","Склад", date_now(), office.note() );
         ItemService.saveTransaction(trs);
         return "redirect:/index";
+        }
+        else {
+            return "redirect:/index#error";
+        }
     }
 
     @PostMapping(value = "/VidOfc")
     public String  vidOfc( Office office, Model model){
+        Store check=ItemService.getStore(office.id()).orElse(new Store(0,"",""));
+        if (check.id()!=0) {
         Office officeBd=new Office(office.id(),
                 date_now(),
                 "Выдача",
@@ -106,8 +129,68 @@ public class TextController {
         Transaction trs=new Transaction(office.id(),"Склад","Офис", date_now(),office.note() );
         ItemService.saveTransaction(trs);
         return "redirect:/index";
+        }
+        else {
+            return "redirect:/index#error";
+        }
     }
 
 
+
+    @GetMapping(value = "/storedelete")
+    public String  StoreDelete( Integer Id,  Model model ){
+        Store store=ItemService.getStore(Id).orElse(new Store(0,"",""));
+        if (store.id()!=0){
+            Item_Delete_Id=Id;
+            Item_Delete_Place="store";
+           return "redirect:/index#delete";
+
+       }
+
+        return "redirect:/index#error";
+    }
+    @GetMapping(value = "/officedelete")
+    public String  OfficeDelete( Integer Id,  Model model ){
+        Office office=ItemService.getOffice(Id).orElse(new Office(0,"","",""));
+        if (office.id()!=0){
+            Item_Delete_Id=Id;
+            Item_Delete_Place="office";
+            return "redirect:/index#delete";
+
+        }
+
+        return "redirect:/index#error";
+    }
+    @GetMapping(value = "/outsidedelete")
+    public String  OutsideDelete( Integer Id,  Model model ){
+        Outside outside=ItemService.getOutside(Id).orElse(new Outside(0,"","","",""));
+        if (outside.id()!=0){
+            Item_Delete_Id=Id;
+            Item_Delete_Place="outside";
+            return "redirect:/index#delete";
+
+        }
+
+        return "redirect:/index#error";
+    }
+    @PostMapping(value = "/delete")
+    public String  Delete( Office office,  Model model ){
+        Transaction trs=new Transaction(Item_Delete_Id,Item_Delete_Place,"Списание", date_now(),office.note() );
+        ItemService.saveTransaction(trs);
+        if (Item_Delete_Place.equals("store")){
+            ItemService.deleteStore(Item_Delete_Id);
+            return "redirect:/index";
+        }
+        if (Item_Delete_Place.equals("outside")){
+            ItemService.deleteOutside(Item_Delete_Id);
+            return "redirect:/index";
+        }
+        if (Item_Delete_Place.equals("office")){
+            ItemService.deleteOffice(Item_Delete_Id);
+            return "redirect:/index";
+        }
+        return "redirect:/index#error";
+    }
 }
+
 

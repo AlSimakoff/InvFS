@@ -1,0 +1,267 @@
+@startuml
+
+title __INVFS's Class Diagram__\n
+
+  namespace org.example {
+    class org.example.Main {
+    }
+  }
+  
+
+  namespace org.example {
+    namespace controller {
+      class org.example.controller.TextController {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.ItemMapper {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.Office {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.OfficeMapper {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      interface org.example.repositories.OfficeRepository {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.OfficeRepositoryImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.Outside {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.OutsideMapper {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      interface org.example.repositories.OutsideRepository {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.OutsideRepositoryImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.Store {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.StoreMapper {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      interface org.example.repositories.StoreRepository {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.StoreRepositoryImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.Transaction {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.TransactionMapper {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      interface org.example.repositories.TransactionRepository {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.TransactionRepositoryImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.item {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      interface org.example.repositories.itemRepository {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace repositories {
+      class org.example.repositories.itemRepositoryImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      class org.example.services.OfficeFull {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      class org.example.services.OutsideFull {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      class org.example.services.StoreFull {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      class org.example.services.TransactionFull {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      interface org.example.services.itemService {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace services {
+      class org.example.services.itemServiceImpl {
+      }
+    }
+  }
+  
+
+  namespace org.example {
+    namespace utils {
+      class org.example.utils.InitiateUtils {
+      }
+    }
+  }
+  
+
+  org.example.controller.TextController o-- org.example.services.itemServiceImpl : ItemService
+  org.example.repositories.ItemMapper .up.|> org.springframework.jdbc.core.RowMapper
+  org.example.repositories.OfficeMapper .up.|> org.springframework.jdbc.core.RowMapper
+  org.example.repositories.OfficeRepositoryImpl .up.|> org.example.repositories.OfficeRepository
+  org.example.repositories.OfficeRepositoryImpl o-- org.example.repositories.OfficeMapper : officeMapper
+  org.example.repositories.OutsideMapper .up.|> org.springframework.jdbc.core.RowMapper
+  org.example.repositories.OutsideRepositoryImpl .up.|> org.example.repositories.OutsideRepository
+  org.example.repositories.OutsideRepositoryImpl o-- org.example.repositories.OutsideMapper : outsideMapper
+  org.example.repositories.StoreMapper .up.|> org.springframework.jdbc.core.RowMapper
+  org.example.repositories.StoreRepositoryImpl .up.|> org.example.repositories.StoreRepository
+  org.example.repositories.StoreRepositoryImpl o-- org.example.repositories.StoreMapper : storeMapper
+  org.example.repositories.TransactionMapper .up.|> org.springframework.jdbc.core.RowMapper
+  org.example.repositories.TransactionRepositoryImpl .up.|> org.example.repositories.TransactionRepository
+  org.example.repositories.TransactionRepositoryImpl o-- org.example.repositories.TransactionMapper : transactionMapper
+  org.example.repositories.itemRepositoryImpl .up.|> org.example.repositories.itemRepository
+  org.example.repositories.itemRepositoryImpl o-- org.example.repositories.ItemMapper : itemMapper
+  org.example.services.itemServiceImpl .up.|> org.example.services.itemService
+  org.example.services.itemServiceImpl o-- org.example.repositories.itemRepository : ItemRepository
+  org.example.services.itemServiceImpl o-- org.example.repositories.OfficeRepository : officeRepository
+  org.example.services.itemServiceImpl o-- org.example.repositories.OutsideRepository : outsideRepository
+  org.example.services.itemServiceImpl o-- org.example.repositories.StoreRepository : storeRepository
+  org.example.services.itemServiceImpl o-- org.example.repositories.TransactionRepository : transactionRepository
+  org.example.utils.InitiateUtils .up.|> org.springframework.boot.CommandLineRunner
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

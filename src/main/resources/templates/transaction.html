@@ -5,9 +5,18 @@
           href="/static/css/inv.css" th:href="@{/css/inv.css}" />
     <meta charset="UTF-8">
     <title>История действий</title>
+    <style>
+	 body {
+  background-image: url("images/background.jpg");
+}</style>
 </head>
 <body>
-<table class="table" >
+<div class="topnav">
+    <a  href="http://localhost:8080/index">Панель инвентаризации</a>
+    <a class="active" href="http://localhost:8080/transaction">История действий</a>
+</div>
+<br><br>
+<table class="table" style="width:1043px; height:700px; "  align="center">
     <thead>
     <tr>
         <th scope="col">Код объекта</th>
@@ -21,7 +30,7 @@
     </tr>
     </thead>
     <tbody>
-    <tbody>
+
     <tr th:each="i : ${#numbers.sequence(transaction.size() - 1, 0, -1)}">
         <td th:text="${transaction[i].id}"></td>
         <td th:text="${transaction[i].name}"></td>

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public class StoreRepositoryImpl implements StoreRepository{
-    private static final String SQL_GET_BY_ID=
-            "select id_item, Action, note from store where id = :id";
+    private static final String SQL_GET_BY_Item_ID=
+            "select id_item, Action, note from store where id_item = :id";
     private static final String SQL_Find_All=
             "select * from store";
     private static final String SQL_SAVE=
@@ -31,12 +31,13 @@ public class StoreRepositoryImpl implements StoreRepository{
         var params = new MapSqlParameterSource();
         params.addValue("id", id);
         return jdbcTemplate.query(
-                SQL_GET_BY_ID,
+                SQL_GET_BY_Item_ID,
                 params,
                 storeMapper
         ).stream().findFirst();
 
     }
+
     @Override
     public void save(Store store){
         var params =new MapSqlParameterSource();

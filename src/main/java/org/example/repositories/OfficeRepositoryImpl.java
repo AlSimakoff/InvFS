@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public class OfficeRepositoryImpl implements OfficeRepository{
-    private static final String SQL_GET_BY_ID=
-            "select id_item, Date_delivery, Action, note from office where id = :id";
+    private static final String SQL_GET_BY_Item_ID=
+            "select id_item, Date_delivery, Action, note from office where id_item = :id";
     private static final String SQL_Find_All=
             "select * from office";
     private static final String SQL_SAVE=
@@ -31,7 +31,7 @@ public class OfficeRepositoryImpl implements OfficeRepository{
         var params = new MapSqlParameterSource();
         params.addValue("id", id);
         return jdbcTemplate.query(
-                SQL_GET_BY_ID,
+                SQL_GET_BY_Item_ID,
                 params,
                 officeMapper
         ).stream().findFirst();

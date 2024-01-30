@@ -127,7 +127,16 @@ line-height: 2;}
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
-
+input.form {
+width: 10px;
+ padding:0px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
 /* custom styles */
 body {
   padding: 4em;
@@ -145,6 +154,7 @@ input {
   box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
   width: 190px;
 }
+
 .table {
 
 	width: 100%;
@@ -152,6 +162,12 @@ input {
 	border: none;
 
 	margin-bottom: 20px;
+
+   overflow-y:scroll;
+
+   height:300px;
+
+   display:block;
 
 }
 
@@ -202,6 +218,7 @@ input {
 
 .table tbody tr:nth-child(even){
 
+
 	background: #f3f3f3;
 
 }
@@ -217,7 +234,15 @@ input {
 	border-radius: 0 8px 8px 0;
 
 }
-
+::-webkit-scrollbar {
+	width: 6px;
+}
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgb(220 220 220 / 30%);
+}
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 6px rgb(247 247 247 / 30%);
+}
 .btn {
 	display: inline-block;
 	box-sizing: border-box;
@@ -264,7 +289,7 @@ input {
         -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
         -o-background-size: 100%; /* Opera 9.6+ */
         background-size: 100%; /* Современные браузеры */
-             background-repeat: no-repeat;
+             background-repeat: repeat;
              background-attachment: fixed;
              background-position: center;
      }
@@ -275,3 +300,28 @@ input {
      color: white;
      font-size: x-large;
      }
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
